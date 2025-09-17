@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -7,14 +7,16 @@ export const Route = createFileRoute('/')({
       <div>
         <h2>🎯 챌린지 과제</h2>
         <p>다음 기능들을 구현해보세요:</p>
-        
+
         <div>
           <h3>1. 기본 내비게이션 (필수)</h3>
           <ul>
             <li>[ ] Link 컴포넌트를 사용한 기본 내비게이션 메뉴</li>
             <li>[ ] 활성 링크 하이라이팅 (activeProps 사용)</li>
             <li>[ ] 펜딩 상태 표시 (pendingProps 사용)</li>
-            <li>[ ] 최소 5개 페이지 (Home, Products, Categories, About, Contact)</li>
+            <li>
+              [ ] 최소 5개 페이지 (Home, Products, Categories, About, Contact)
+            </li>
           </ul>
         </div>
 
@@ -29,25 +31,7 @@ export const Route = createFileRoute('/')({
         </div>
 
         <div>
-          <h3>3. 브레드크럼 내비게이션 (도전)</h3>
-          <ul>
-            <li>[ ] 현재 경로 기반 브레드크럼 표시</li>
-            <li>[ ] 각 브레드크럼 항목을 클릭 가능한 링크로 구현</li>
-            <li>[ ] 동적 라우트의 파라미터 값 표시</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>4. 탭 내비게이션 (도전)</h3>
-          <ul>
-            <li>[ ] 탭 형태의 서브 내비게이션 구현</li>
-            <li>[ ] 활성 탭 하이라이팅</li>
-            <li>[ ] 최소 3개의 탭 (Overview, Details, Reviews 등)</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>5. 고급 기능 (선택)</h3>
+          <h3>3. 고급 기능 (선택)</h3>
           <ul>
             <li>[ ] 조건부 내비게이션 (Navigate 컴포넌트)</li>
             <li>[ ] 내비게이션 가드 (인증 기반)</li>
@@ -60,7 +44,9 @@ export const Route = createFileRoute('/')({
           <h4>💡 구현 힌트</h4>
           <p>solution 프로젝트를 참고하되, 직접 구현해보세요!</p>
           <ul>
-            <li>Link 컴포넌트의 activeProps, inactiveProps, pendingProps 활용</li>
+            <li>
+              Link 컴포넌트의 activeProps, inactiveProps, pendingProps 활용
+            </li>
             <li>useNavigate 훅으로 프로그래매틱 내비게이션</li>
             <li>useRouter 훅으로 현재 라우트 정보 접근</li>
             <li>Navigate 컴포넌트로 조건부 리디렉션</li>
@@ -68,5 +54,5 @@ export const Route = createFileRoute('/')({
         </div>
       </div>
     </div>
-  )
-})
+  ),
+});
