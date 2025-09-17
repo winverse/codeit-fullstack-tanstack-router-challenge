@@ -35,12 +35,28 @@ function ProductList() {
     !category || category === 'all' || p.category === category;
   const filteredProducts = products.filter(bySearchTerm).filter(byCategory);
 
+  // 정렬 함수
+  const compareByPrice = (a, b) => b.price - a.price;
+  const compareByName = (a, b) => a.name.localeCompare(b.name);
+  const getSortedProducts = (products, sortKey, order) => {
+    const comparator = sortKey === 'price' ? compareByPrice : compareByName;
+    const sorted = [...products].sort(comparator);
+    return order === 'desc' ? sorted.reverse() : sorted;
+  };
+
+  const sortedProducts = getSortedProducts(filteredProducts, sort, order);
+
   const limit = 10;
   const totalPages = Math.ceil(filteredProducts.length / limit);
   const paginatedProducts = filteredProducts.slice(
     (page - 1) * limit,
     page * limit,
   );
+
+  const handleSortChange = (sortValue) => {
+    const [sort, order] = sortValue.split('-');
+    navigate({ search: (prev) => ({ ...prev, sort, order, page: 1 }) });
+  };
 
   const handleNavigate = (key, value) => {
     navigate({ search: (prev) => ({ ...prev, [key]: value, page: 1 }) });
@@ -50,21 +66,6 @@ function ProductList() {
     navigate({
       search: (prev) => ({ ...prev, page: newPage }),
     });
-  };
-
-  // 정렬 함수
-  const compareByPrice = (a, b) => b.price - a.price;
-  const compareByName = (a, b) => a.name.localeCompare(b.name);
-  const getSortedProducts = (products, sortKey, order) => {
-    const comparator = sortKey === 'price' ? compareByPrice : compareByName;
-    const sorted = [...products].sort(comparator);
-    return order === 'desc' ? sorted.reverse() : sorted;
-  };
-  const sortedProducts = getSortedProducts(filteredProducts, sort, order);
-
-  const handleSortChange = (sortValue) => {
-    const [sort, order] = sortValue.split('-');
-    navigate({ search: (prev) => ({ ...prev, sort, order, page: 1 }) });
   };
 
   return (
@@ -104,7 +105,7 @@ function ProductList() {
       </div>
 
       <div className="product-grid">
-        {sortedProducts.map((product) => (
+        {paginatedProducts.map((product) => (
           <div key={product.id} className="product-card">
             <h3>{product.name}</h3>
             <p>카테고리: {product.category}</p>
